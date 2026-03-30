@@ -10,15 +10,11 @@ import {
   Address
 } from "@stellar/stellar-sdk";
 
-// 1. Configuration
 const CONTRACT_ID = "CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ"; 
 const RPC_URL = "https://soroban-testnet.stellar.org";
 const networkPassphrase = Networks.TESTNET;
 const server = new rpc.Server(RPC_URL);
 
-/**
- * Connects to the Freighter Wallet extension
- */
 export const connectWallet = async () => {
   const connection = await isConnected();
   
@@ -38,16 +34,13 @@ export const connectWallet = async () => {
   return null;
 };
 
-/**
- * Invokes the 'buy_access' function
- */
 export async function buyAccess(userAddress: string, duration: number) {
   const account = await server.getAccount(userAddress);
   const contract = new Contract(CONTRACT_ID);
 
 const tx = new TransactionBuilder(account, { 
   fee: "1000", 
-  networkPassphrase: Networks.TESTNET // <--- Add this line explicitly
+  networkPassphrase: Networks.TESTNET
 })
     .addOperation(
       contract.call(
@@ -72,15 +65,10 @@ const tx = new TransactionBuilder(account, {
   return sendResponse;
 }
 
-/**
- * Optimized Helper for the Live Status Page
- */
 export async function getTimeLeft(userAddress: string) {
   try {
     const contract = new Contract(CONTRACT_ID);
     
-    // We use a dummy account for simulation because read-only calls 
-    // don't actually need the user's current sequence number.
     const tx = new TransactionBuilder(
       new Account(userAddress, "0"), 
       { fee: "100", networkPassphrase }

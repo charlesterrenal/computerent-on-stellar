@@ -9,6 +9,9 @@ export default function Home() {
   const [customInput, setCustomInput] = useState<string>("60");
   const [loading, setLoading] = useState(false);
 
+  const MIN_MINUTES = 1;
+  const MAX_MINUTES = 7 * 24 * 60;
+
   // Sync & Timer Logic
   const sync = async (userAddr: string) => {
     const seconds = await getTimeLeft(userAddr);
@@ -17,7 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     if (timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+      const timer = setInterval(() => setTimeLeft((prev: number) => Math.max(0, prev - 1)), 1000);
       return () => clearInterval(timer);
     }
   }, [timeLeft]);
@@ -32,8 +35,39 @@ export default function Home() {
 
   const handleInputChange = (val: string) => {
     setCustomInput(val);
-    const mins = parseInt(val);
-    if (!isNaN(mins)) setDuration(mins * 60);
+    const mins = Number.parseInt(val, 10);
+    if (Number.isNaN(mins)) {
+      setDuration(0);
+      return;
+    }
+    const safeMinutes = Math.min(MAX_MINUTES, Math.max(0, mins));
+    setDuration(safeMinutes * 60);
+  };
+
+  const handleConnectWallet = async () => {
+    const nextAddress = await connectWallet();
+    if (nextAddress) {
+      setAddress(nextAddress);
+    }
+  };
+
+  const handleBuyAccess = async () => {
+    if (!address) return;
+    if (duration < MIN_MINUTES * 60) {
+      alert(`Minimum lease is ${MIN_MINUTES} minute.`);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await buyAccess(address, duration);
+      await sync(address);
+    } catch (e) {
+      console.error("Blockchain interaction failed:", e);
+      alert("Blockchain interaction failed.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const totalHours = (parseInt(customInput || "0") / 60).toFixed(2);
@@ -53,7 +87,7 @@ export default function Home() {
         {/* Logo Section */}
         <header className="mb-4 sm:mb-5 text-center relative">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">CompuTeRent</h1>
-          <p className="text-gray-500 text-xs sm:text-sm font-medium">High Performance Infrastructure</p>
+          <p className="text-gray-500 text-xs sm:text-sm font-medium">Infrastructure anywhere, anytime.</p>
           <button
             onClick={() => window.location.reload()}
             className="absolute right-0 top-0 p-1.5 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-600 transition-colors"
@@ -74,7 +108,7 @@ export default function Home() {
           <div className="bg-white/60 backdrop-blur-3xl border border-white p-10 sm:p-14 rounded-2xl sm:rounded-3xl shadow-2xl text-center transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-emerald-200/60">
             <h2 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8 tracking-tight text-gray-900">Access Global <br/>Compute Nodes.</h2>
             <button 
-              onClick={async () => setAddress(await connectWallet())}
+              onClick={handleConnectWallet}
               className="px-8 sm:px-10 py-3 bg-emerald-600 text-white text-sm sm:text-base font-bold rounded-full hover:bg-emerald-500 transition-all shadow-xl hover:scale-105 active:scale-95"
             >
               Connect Wallet
@@ -139,6 +173,8 @@ export default function Home() {
               <div className="relative">
                 <input 
                   type="number" 
+                  min={0}
+                  max={MAX_MINUTES}
                   value={customInput}
                   onChange={(e) => handleInputChange(e.target.value)}
                   className="w-full bg-transparent text-2xl sm:text-3xl font-bold focus:outline-none placeholder-gray-200 leading-none pr-8"
@@ -180,12 +216,7 @@ export default function Home() {
             {/* COMPACT CONTROLS: ACTION + PRESETS */}
             <div className="md:col-span-2 self-start py-1">
               <button
-                onClick={async () => {
-                  setLoading(true);
-                  try { await buyAccess(address, duration); await sync(address); }
-                  catch (e) { alert("Blockchain interaction failed."); }
-                  setLoading(false);
-                }}
+                onClick={handleBuyAccess}
                 disabled={loading}
                 className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#1D1D1F] text-white text-sm font-bold tracking-tight shadow-lg hover:bg-emerald-900 disabled:bg-gray-700"
               >
