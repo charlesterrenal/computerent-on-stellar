@@ -4,3 +4,14 @@ target
 # Local settings
 .soroban
 .stellar
+
+# Dependencies
+**/node_modules/
+
+# Next.js Build Output
+**/.next/
+**/out/
+
+# OS files
+.DS_Store
+Thumbs.db
