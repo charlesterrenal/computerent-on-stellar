@@ -81,4 +81,13 @@ stellar contract invoke \
   --network testnet \
   -- buy_access --user <USER_ADDRESS> --duration 3600
 ```
+
+## References and Resources
+* [Stellar Docs](https://developers.stellar.org/)
+* [armlynobinguar's Github Repository for Stellar-Bootcamp-2026](https://github.com/armlynobinguar/Stellar-Bootcamp-2026)
+* [armlynobinguar's Notion Student Guide](https://reminiscent-catcher-409.notion.site/Student-Guide-32ecde917bb8800d9166e62d6111993c)
+* [Freighter Wallet](https://www.freighter.app/)
+* [Cloudflare Tunnels](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
+* [Nginx Proxy Manager](https://nginxproxymanager.com/)
+
 #### This project was built for the "Build on Stellar Bootcamp Philippines"
