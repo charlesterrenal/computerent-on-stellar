@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CompuTeRent | Decentralized Compute Marketplace",
   description: "Lease high-performance compute power via Stellar Soroban smart contracts.",
+  icons: {
+    icon: "/icon.png", // This tells the browser to look for your new logo
+  },
 };
 
 export default function RootLayout({
