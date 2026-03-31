@@ -68,6 +68,9 @@ To comply with security requirements for Web3 wallet interactions, the applicati
 2. Install dependencies: `npm install`
 3. Start the development server: `npm run dev`
 
+## Smart Contract ID
+CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ
+
 ### Building with Docker
 From the root directory of the monorepo, execute:
 `docker compose up -d --build`
