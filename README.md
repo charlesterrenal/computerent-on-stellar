@@ -20,6 +20,9 @@
 ### Stellar Expert Link 
 ![Stellar Expert Link](/frontend/public/screenshots/Stellar%20Explorer%20Link.png)
 <https://stellar.expert/explorer/testnet/contract/CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ>
+### Smart Contract ID
+CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ
+
 ### Stellar Features Used 
 * **Soroban Smart Contracts**: Manages the logic for `buy_access` and `verify_access`, ensuring trustless coordination between the renter and the provider. 
 * **XLM Transfers**: Utilized for near-instant, low-cost micro-leases of compute time. 
@@ -81,9 +84,6 @@ To comply with security requirements for Web3 wallet interactions, the applicati
 1. Navigate to the UI directory: `cd ui`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm run dev`
-
-## Smart Contract ID
-CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ
 
 ### Building with Docker
 From the root directory of the monorepo, execute:
