@@ -6,6 +6,14 @@
 - **Problem**: A Computer Engineering student in Manila, working on a low-spec laptop, cannot complete intensive AI model training or high-fidelity CAD rendering locally, leading to project delays or the high cost of centralized cloud providers like AWS.
 - **Solution**: CompuTeRent allows the student to lease idle compute power from a local home lab by sending a micropayment to a Soroban smart contract, which autonomously grants and expires access based on real-time on-chain timestamps, offering a low-latency and cost-effective alternative through Stellar’s minimal transaction fees.
 
+## UI Screenshots
+![Home Page](/frontend/public/screenshots/Home%20Page.png)
+![Freighter Wallet Pop-up](/frontend/public/screenshots/Freighter%20Wallet%20Pop-up.png)
+![Dashboard Overview](/frontend/public/screenshots/Dashboard%20Overview.png)
+![Lease Selection](/frontend/public/screenshots/Lease%20Selection.png)
+![Lease Information](/frontend/public/screenshots/Lease%20Information.png)
+![Stellar Expert Link](/frontend/public/screenshots/Stellar%20Explorer%20Link.png)
+<https://stellar.expert/explorer/testnet/contract/CBTI36VAFHUN57IQU77CLQ7HNICYH5TGJXUSJMSQQBUMQ4DDKS4TWQMZ>
 ### Stellar Features Used 
 * **Soroban Smart Contracts**: Manages the logic for `buy_access` and `verify_access`, ensuring trustless coordination between the renter and the provider. 
 * **XLM Transfers**: Utilized for near-instant, low-cost micro-leases of compute time. 
