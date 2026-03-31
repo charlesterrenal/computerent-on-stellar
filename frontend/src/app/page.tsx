@@ -230,8 +230,8 @@ export default function Home() {
         )}
 
           <footer className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center px-2 sm:px-4">
-           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">v1.0 DePIN Prototype</p>
-           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Stellar Testnet 2026</p>
+           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Charles Vincent Terrenal</p>
+           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Self-hosted</p>
         </footer>
       </div>
     </main>
